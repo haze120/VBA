@@ -1,0 +1,43 @@
+# VBA
+Option Explicit
+
+Sub exerciciodata()
+Dim data, datap As Date
+data = Date
+datap = InputBox("Digite um data passada(dd/mm/yyyy)")
+
+Dim dia, mes, ano As Integer
+
+If datap > data Then
+    Do While Year(datap) >= Year(data)
+        MsgBox "Data Invalida"
+        datap = InputBox("Digite uma data antes da atual")
+    Loop
+End If
+
+ano = Year(data) - Year(datap)
+If Year(data) = Year(datap) Then
+    ano = 0
+ElseIf Month(datap) >= Month(data) And Day(datap) >= Day(data) Then
+    ano = ano - 1
+End If
+
+If Month(datap) > Month(data) Then
+    mes = Month(datap) - Month(data)
+ElseIf Month(datap) = Month(data) Then
+    mes = 0
+End If
+
+If Day(datap) > Day(data) Then
+    dia = Day(datap) - Day(data)
+ElseIf Day(datap) = Day(data) Then
+    dia = 0
+End If
+
+MsgBox inte(dia, mes, ano)
+
+End Sub
+
+Function inte(dia, mes, ano As Integer) As String
+inte = "A diferença da data digitada é de: " & ano & " ano(s), " & mes & " mese(s) e " & dia & " dia(s)"
+End Function
